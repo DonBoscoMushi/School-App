@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">School App</string>
+    <string name="username">Username</string>
+    <string name="gender">Gender</string>
+    <string name="firstname">Firstname</string>
+    <string name="password">Password</string>
+    <string name="lastname">Lastname</string>
+    <string name="middlename">Middlename</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="dprog">Degree Program</string>
+    <string name="role">Role</string>
+    <string name="email">Email</string>
+    <string name="ward">Ward</string>
+    <string name="phone">Phone</string>
+    <string name="region">Region</string>
+    <string name="district">District</string>
+    <string name="male">Male</string>
+    <string name="registration">Registration</string>
+    <string name="female">Female</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="login_notify">Please Login to continue</string>
+
+    <string-array name="role">
+        <item>Admin</item>
+        <item>Teacher</item>
+        <item>Student</item>
+    </string-array>
+</resources>
