@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.donnicholaus.schoolapp.admin.Nav;
 import com.donnicholaus.schoolapp.db.DatabaseHelper;
+import com.donnicholaus.schoolapp.student.Student;
 
 public class Login extends AppCompatActivity {
 
@@ -23,8 +25,10 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        boolean admin = db.checkAdminExist();
 
-        if(!db.checkAdminExist()){
+
+        if(!admin){
             addDefaultUser();
         }
 
@@ -40,9 +44,24 @@ public class Login extends AppCompatActivity {
                 String username = lg_username.getText().toString();
                 String password = lg_password.getText().toString();
 
-                boolean login = db.checkUserExist(username, password);
-                if(login){
-
+                String login = db.checkUserExist(username, password);
+                switch (login) {
+                    case "Admin": {
+                        Intent intent = new Intent(getApplicationContext(), Nav.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case "Teacher":
+                        Toast.makeText(getApplicationContext(), "Bado activity ya walim", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Student": {
+                        Intent intent = new Intent(getApplicationContext(), Student.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    default: {
+                        Toast.makeText(getApplicationContext(), "No user found", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

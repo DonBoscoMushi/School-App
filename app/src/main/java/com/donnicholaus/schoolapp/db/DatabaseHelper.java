@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -111,8 +112,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         close();
 
-        return count > 0;
+        if(count > 0){
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
 
     public String checkUserExist(String regNo, String password){
@@ -127,6 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (count > 0) {
             role = cursor.getString(cursor.getColumnIndex(DbConfig.COLUMN_ROLE));
+        }else{
+            role = null;
         }
 
         cursor.close();

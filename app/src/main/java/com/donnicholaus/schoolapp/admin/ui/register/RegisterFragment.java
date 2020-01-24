@@ -216,6 +216,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void clearForm(ViewGroup group) {
+        rgRole.setSelection(0);
         for (int i = 0, count = group.getChildCount(); i < count; ++i) {
             View view = group.getChildAt(i);
             if(view instanceof EditText) {
