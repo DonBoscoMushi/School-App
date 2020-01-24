@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.donnicholaus.schoolapp.admin.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_register"
+        android:name="com.donnicholaus.schoolapp.admin.ui.register.RegisterFragment"
+        android:label="@string/menu_register"
+        tools:layout="@layout/fragment_register" />
+
+
+    <fragment
+        android:id="@+id/nav_view_lecturers"
+        android:name="com.donnicholaus.schoolapp.admin.ui.lecturer.LecturerFragment"
+        android:label="@string/menu_view_lecturer"
+        tools:layout="@layout/fragment_lecturer" />
+
+    <fragment
+        android:id="@+id/nav_view_student"
+        android:name="com.donnicholaus.schoolapp.admin.ui.courses.CoursesFragment"
+        android:label="@string/menu_view_student"
+        tools:layout="@layout/fragment_student" />
+
+    <fragment
+        android:id="@+id/nav_courses"
+        android:name="com.donnicholaus.schoolapp.admin.ui.students.StudentFragment"
+        android:label="@string/menu_courses"
+        tools:layout="@layout/fragment_courses" />
+</navigation>

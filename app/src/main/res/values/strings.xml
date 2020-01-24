@@ -26,4 +26,19 @@
         <item>Teacher</item>
         <item>Student</item>
     </string-array>
+
+    <string name="title_activity_navigation">Navigation</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_logout">Logout</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_register">Register</string>
+    <string name="menu_view_student">Students</string>
+    <string name="menu_view_lecturer">Lecturers</string>
+    <string name="menu_courses">Courses</string>
+    <string name="menu_reg_course">Register Course</string>
 </resources>
