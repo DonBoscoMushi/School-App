@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,18 +20,22 @@ public class Login extends AppCompatActivity {
     Button btn_login;
 
 
-    private  DatabaseHelper db;
+    //private  DatabaseHelper db;
+    DatabaseHelper db = new DatabaseHelper(Login.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        boolean admin = db.checkAdminExist();
 
 
-        if(!admin){
-            addDefaultUser();
-        }
+
+//        boolean admin = db.checkAdminExist();
+//
+//
+//        if(!admin){
+//            addDefaultUser();
+//        }
 
         lg_username = findViewById(R.id.etUsername);
         lg_password = findViewById(R.id.etPassword);
@@ -45,6 +50,9 @@ public class Login extends AppCompatActivity {
                 String password = lg_password.getText().toString();
 
                 String login = db.checkUserExist(username, password);
+                Toast.makeText(getApplicationContext(), login, Toast.LENGTH_SHORT).show();
+
+
                 switch (login) {
                     case "Admin": {
                         Intent intent = new Intent(getApplicationContext(), Nav.class);
@@ -63,21 +71,26 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "No user found", Toast.LENGTH_SHORT).show();
                     }
                 }
+//                }catch (Exception e){
+//                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//
+//                }
+
             }
         });
 
     }
 
-    public void addDefaultUser(){
-
-        boolean insert = db.insert("Admin", null, null, null, null,
-                null,null, "Admin", "Admin", "admin", null,
-                null, null, null);
-        if(insert){
-            Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
-        }else
-            Toast.makeText(getApplicationContext(), "No Admin", Toast.LENGTH_SHORT).show();
-    }
+//    public void addDefaultUser(){
+//
+//        boolean insert = db.insert("Admin", null, null, null, null,
+//                null,null, "Admin", "Admin", "admin", null,
+//                null, null, null);
+//        if(insert){
+//            Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
+//        }else
+//            Toast.makeText(getApplicationContext(), "No Admin", Toast.LENGTH_SHORT).show();
+//    }
 
 
 }

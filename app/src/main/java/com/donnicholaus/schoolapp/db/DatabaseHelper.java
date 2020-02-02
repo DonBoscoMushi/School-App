@@ -5,16 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static DatabaseHelper databaseHelper;
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static  final int DATABASE_VERSION = 1;
     private  static final String DATABASE_NAME = DbConfig.DATABASE_NAME;
+    Location location = new Location();
 
     private static final String CREATE_TABLE_STUDENTS = "CREATE TABLE " + DbConfig.TABLE_USERS + "("
             + DbConfig.COLUMN_ID + " INT PRIMARY KEY, "
@@ -34,7 +37,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + DbConfig.COLUMN_WARD + " TEXT "
             + ")";
 
+    private static final String addAdmin = "INSERT INTO " +  DbConfig.TABLE_USERS + " ("
+            + DbConfig.COLUMN_REGNO+ ", " + DbConfig.COLUMN_FIRSTNAME + ", " + DbConfig.COLUMN_MIDDLENAME
+            + ", " + DbConfig.COLUMN_LASTNAME + ", " + DbConfig.COLUMN_GENDER + ", " + DbConfig.COLUMN_EMAIL
+            + ", " + DbConfig.COLUMN_PHONE + ", " + DbConfig.COLUMN_BIRTHDATE + ", " + DbConfig.COLUMN_ROLE
+            + ", " + DbConfig.COLUMN_PASSWORD + ", " + DbConfig.COLUMN_DEGREE_PROGRAM + ", " + DbConfig.COLUMN_REGION
+            + ", " + DbConfig.COLUMN_DISTRICT + ", " + DbConfig.COLUMN_WARD + " ) " +
+            "VALUES ('Admin', null, null, null, null, null, null, null, 'Admin', 'admin', null, null, null, null)";
 
+    //public static final String AdminQuery = "";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME  , null, DATABASE_VERSION);
@@ -44,6 +55,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_TABLE_STUDENTS);
+        db.execSQL(addAdmin);
+        db.execSQL(location.createRegionTable);
+        db.execSQL(location.createDistrictTable);
+        db.execSQL(location.createWardTable);
+        db.execSQL(location.insertRegions);
+        db.execSQL(location.insertDistricts);
+        db.execSQL(location.insertWardsGroup1);
+        db.execSQL(location.insertWardsGroup2);
+
+        //db.close();
 
     }
 
@@ -51,6 +72,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS " + DbConfig.TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS districts");
+        db.execSQL("DROP TABLE IF EXISTS regions");
+        db.execSQL("DROP TABLE IF EXISTS wards");
 
     }
 
@@ -92,54 +116,118 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean checkAdminExist(){
-
-        String username = "Admin";
-        String password = "admin";
-        SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {"RegNo"};
-
-        String selection = "RegNo = ? and password = ?";
-        String[] selectionArgs = {username, password};
-
-        Cursor cursor = db.query(DbConfig.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
-
-//        Cursor cursor = db.rawQuery("SELECT RegNo, password FROM " + DbConfig.TABLE_USERS +
-//                " WHERE RegNo == 'Admin'AND password == 'admin' ", null);
-
-        int count = cursor.getCount();
-
-        cursor.close();
-        close();
-
-        if(count > 0){
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean checkAdminExist(){
+//
+//        String username = "Admin";
+//        String password = "admin";
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String[] columns = {"RegNo"};
+//
+//        String selection = "RegNo = ? and password = ?";
+//        String[] selectionArgs = {username, password};
+//
+//        Cursor cursor = db.query(DbConfig.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
+//
+////        Cursor cursor = db.rawQuery("SELECT RegNo, password FROM " + DbConfig.TABLE_USERS +
+////                " WHERE RegNo == 'Admin'AND password == 'admin' ", null);
+//
+//        int count = cursor.getCount();
+//
+//        cursor.close();
+//        Log.d("Error", String.valueOf(count));
+//        close();
+//
+//        if(count > 0){
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 
 
     public String checkUserExist(String regNo, String password){
         SQLiteDatabase db = this.getReadableDatabase();
-        String role = null;
-        String[] columns = {DbConfig.COLUMN_REGNO, DbConfig.COLUMN_PASSWORD};
-        String selection = "RegNo = ? AND password=?";
+        String role;
+        //String[] columns = {DbConfig.COLUMN_REGNO, DbConfig.COLUMN_PASSWORD};
+        String selection = "RegNo = ? AND password = ?";
         String[] selectionArgs = {regNo, password};
 
-        Cursor cursor = db.query(DbConfig.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
-        int count = cursor.getCount();
+        Cursor cursor = db.query(DbConfig.TABLE_USERS,  null, selection, selectionArgs, null, null, null);
 
-        if (count > 0) {
-            role = cursor.getString(cursor.getColumnIndex(DbConfig.COLUMN_ROLE));
+
+        if(cursor.moveToFirst()){
+            role = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_ROLE));
         }else{
-            role = null;
+            role = "";
         }
 
         cursor.close();
         db.close();
 
         return role;
+    }
+
+    public List<String> getRegions(){
+        List<String> regionsList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM regions";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                regionsList.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return regionsList;
+    }
+
+    public List<String> getDistricts(String regionName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = "region_name=?";
+        Cursor regionCode = db.query("regions", new String[]{"region_code",}, selection, new  String[] {regionName}, null,null, null);
+        regionCode.moveToFirst();
+        int region_code = regionCode.getInt(0);
+        List<String> districtList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM districts WHERE region_code="+region_code;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                districtList.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return districtList;
+    }
+
+    public List<String> getWards(String districtName){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = "district_name=?";
+        Cursor regionCode = db.query("districts", new String[]{"district_code"}, selection, new  String[] {districtName}, null,null, null);
+        regionCode.moveToFirst();
+        int district_code = regionCode.getInt(0);
+        List<String> wardsList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM wards WHERE district_code="+district_code;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                wardsList.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return wardsList;
+    }
+
+    public int wardCode(String wardName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = "ward_name=?";
+        Cursor wardCursor = db.query("wards", new String[]{"ward_code"}, selection, new String[]{wardName}, null, null, null);
+        wardCursor.moveToFirst();
+        int ward_code = wardCursor.getInt(0);
+        return ward_code;
+
     }
 }

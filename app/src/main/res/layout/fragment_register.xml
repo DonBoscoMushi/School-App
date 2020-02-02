@@ -342,62 +342,32 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+
+                <Spinner
+                    android:id="@+id/region"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp">
+                    android:entries="@array/location"
+                    android:prompt="@string/region"
+                    android:spinnerMode="dropdown" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/region"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/region"
-                        android:inputType="text"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="2dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                <Spinner
+                    android:id="@+id/district"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/district"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/district"
-                        android:inputType="text"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="2dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
+                    android:entries="@array/location"
+                    android:prompt="@string/district"
+                    android:spinnerMode="dropdown" />
+                <Spinner
+                    android:id="@+id/ward"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="44dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ward"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:hint="@string/ward"
-                        android:inputType="text"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="2dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:entries="@array/location"
+                    android:prompt="@string/ward"
+                    android:spinnerMode="dropdown" />
 
 
             </LinearLayout>

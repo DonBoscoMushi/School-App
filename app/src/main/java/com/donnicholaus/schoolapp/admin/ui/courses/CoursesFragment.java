@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.donnicholaus.schoolapp.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CoursesFragment extends Fragment {
 
@@ -23,13 +24,23 @@ public class CoursesFragment extends Fragment {
         coursesViewModel =
                 ViewModelProviders.of(this).get(CoursesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_courses, container, false);
-        final TextView textView = root.findViewById(R.id.text_share);
-        coursesViewModel.getText().observe(this, new Observer<String>() {
+//        final TextView textView = root.findViewById(R.id.text_share);
+//        coursesViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+
+
+        FloatingActionButton fab = root.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View view) {
+
             }
         });
+
         return root;
     }
 }

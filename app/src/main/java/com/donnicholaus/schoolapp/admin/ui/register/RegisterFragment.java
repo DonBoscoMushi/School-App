@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ import com.donnicholaus.schoolapp.db.DatabaseHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -34,10 +36,10 @@ import java.util.Objects;
 public class RegisterFragment extends Fragment {
 
     private EditText rgFirstname, rgMiddlename, rgLastname, rgEmail, rgPhone, rgBirthdate,
-            rgDegreeProg, rgRegion, rgDistrict, rgWard;
+            rgDegreeProg;
     private TextView rgUsername;
     private RadioGroup radioGender;
-    private Spinner rgRole;
+    private Spinner rgRole, rgRegion, rgDistrict, rgWard;
     private DatabaseHelper db;
     private String initial;
     private RegisterViewModel registerViewModel;
@@ -144,6 +146,52 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+
+        // Populate Regions Spinner
+        List<String> regionsList = db.getRegions();
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, regionsList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rgRegion.setAdapter(dataAdapter);
+
+        // Listening to region selection
+        rgRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Populate districts
+                List<String> districtsList = db.getDistricts(rgRegion.getItemAtPosition(position).toString());
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, districtsList);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                rgDistrict.setAdapter(dataAdapter);
+
+                // Listen to district selection
+                rgDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        // Populate districts
+                        List<String> wardList = db.getWards(rgDistrict.getItemAtPosition(position).toString());
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, wardList);
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        rgWard.setAdapter(dataAdapter);
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // your code here
+                    }
+
+                });
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
         //When the reg button is selected
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -156,9 +204,9 @@ public class RegisterFragment extends Fragment {
                 String email = rgEmail.getText().toString();
                 String phone = rgPhone.getText().toString().trim();
                 String birthdate = rgBirthdate.getText().toString();
-                String region = rgRegion.getText().toString();
-                String district = rgDistrict.getText().toString();
-                String ward = rgWard.getText().toString();
+                String region = rgRegion.getSelectedItem().toString();
+                String district = rgDistrict.getSelectedItem().toString();
+                String ward = rgWard.getSelectedItem().toString();
                 String role = rgRole.getSelectedItem().toString();
                 String degreeProgram = rgDegreeProg.getText().toString();
 
