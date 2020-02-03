@@ -21,6 +21,11 @@ public class DbConfig {
     public static final String COLUMN_DISTRICT = "district";
     public static final String COLUMN_WARD = "ward";
     public static final String COLUMN_DEGREE_PROGRAM = "DegreeProgram";
+    public static final String TABLE_SUBJECT = "subject";
+    public static final String SUBJECT_ID = "_id";
+    public static final String SUBJECT_NAME = "name";
+    public static final String SUBJECT_CODE = "code";
+    public static final String SUBJECT_CREDIT = "credit";
 
 
     //Subject

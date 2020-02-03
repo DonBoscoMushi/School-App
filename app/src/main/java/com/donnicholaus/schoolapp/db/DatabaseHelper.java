@@ -15,6 +15,8 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static DatabaseHelper db;
+
     private static  final int DATABASE_VERSION = 1;
     private  static final String DATABASE_NAME = DbConfig.DATABASE_NAME;
     Location location = new Location();
@@ -45,10 +47,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ", " + DbConfig.COLUMN_DISTRICT + ", " + DbConfig.COLUMN_WARD + " ) " +
             "VALUES ('Admin', null, null, null, null, null, null, null, 'Admin', 'admin', null, null, null, null)";
 
+    private static final String CREATE_SUBJECT_TABLE = "CREATE TABLE " + DbConfig.TABLE_SUBJECT + "("
+            + DbConfig.SUBJECT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + DbConfig.SUBJECT_NAME + " TEXT NOT NULL, "
+            + DbConfig.SUBJECT_CODE + " INTEGER NOT NULL UNIQUE, "
+            + DbConfig.SUBJECT_CREDIT + " REAL" //nullable
+            + ")";
+
     //public static final String AdminQuery = "";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME  , null, DATABASE_VERSION);
+    }
+
+
+
+    public static DatabaseHelper getInstance() {
+
+        if (db == null) {
+            synchronized (DatabaseHelper.class){ //thread safe singleton
+                if (db == null)
+                    db = new DatabaseHelper(null);
+            }
+        }
+
+        return db;
     }
 
     @Override
@@ -56,6 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_TABLE_STUDENTS);
         db.execSQL(addAdmin);
+        db.execSQL(CREATE_SUBJECT_TABLE);
         db.execSQL(location.createRegionTable);
         db.execSQL(location.createDistrictTable);
         db.execSQL(location.createWardTable);
@@ -72,6 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS " + DbConfig.TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + DbConfig.TABLE_SUBJECT);
         db.execSQL("DROP TABLE IF EXISTS districts");
         db.execSQL("DROP TABLE IF EXISTS regions");
         db.execSQL("DROP TABLE IF EXISTS wards");

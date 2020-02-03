@@ -46,5 +46,15 @@
     <string name="menu_view_student">Students</string>
     <string name="menu_view_lecturer">Lecturers</string>
     <string name="menu_courses">Courses</string>
+    <string name="update">Update</string>
     <string name="menu_reg_course">Register Course</string>
+    <string name="course_name">Course Name</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="create_button">Create</string>
+    <string name="course_code">Course Code: %d</string>
+    <string name="course_credit">Subject Credit: %d</string>
+
+    <string name="register_course">Registered Courses</string>
+
+
 </resources>
