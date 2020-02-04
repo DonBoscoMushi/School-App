@@ -1,13 +1,12 @@
 package com.donnicholaus.schoolapp.admin.ui.courses;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,6 +68,11 @@ public class CoursesFragment extends Fragment implements CourseCrudListener {
             showCourseList();
         }
     }
+
+    @Override
+    public void onAttach (Context context) {
+        super.onAttach(context);
+    }
 //
 //    public boolean onSupportNavigateUp() {
 //        finish();
@@ -95,7 +99,7 @@ public class CoursesFragment extends Fragment implements CourseCrudListener {
 //    }
 
     private void showCourseList() {
-        QueryContract.CourseQuery query = new CourseQueryImplementation();
+        QueryContract.CourseQuery query = new CourseQueryImplementation(getActivity());
         query.readAllCourse(new QueryResponse<List<Course>>() {
             @Override
             public void onSuccess(List<Course> data) {
@@ -115,17 +119,6 @@ public class CoursesFragment extends Fragment implements CourseCrudListener {
         });
     }
 
-//    private void initialization() {
-//        recyclerView = findViewById(R.id.recyclerView);
-//
-//        fab = findViewById(R.id.fab);
-//    }
-
-//    @Override
-//    public void onSubjectListUpdate(boolean isUpdate) {
-//
-//
-//    }
 
 
 }

@@ -1,22 +1,30 @@
 package com.donnicholaus.schoolapp.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
 import com.donnicholaus.schoolapp.admin.ui.courses.Course;
-import com.donnicholaus.schoolapp.db.QueryContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CourseQueryImplementation implements QueryContract.CourseQuery {
 
-    private DatabaseHelper db = DatabaseHelper.getInstance();
+    private Context context;
+
+    public CourseQueryImplementation(Context context){
+        this.context = context;
+
+    }
+
+
 
     @Override
     public void createCourse(Course course, QueryResponse<Boolean> response) {
+        DatabaseHelper db = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -41,6 +49,7 @@ public class CourseQueryImplementation implements QueryContract.CourseQuery {
 
     @Override
     public void readAllCourse(QueryResponse<List<Course>> response) {
+        DatabaseHelper db = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
 
         List<Course> courseList = new ArrayList<>();
@@ -70,6 +79,7 @@ public class CourseQueryImplementation implements QueryContract.CourseQuery {
 
     @Override
     public void updateCourse(Course course, QueryResponse<Boolean> response) {
+        DatabaseHelper db = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
         ContentValues contentValues = getContentValuesFromCourse(course);
@@ -92,6 +102,7 @@ public class CourseQueryImplementation implements QueryContract.CourseQuery {
 
     @Override
     public void deleteCourse(int courseId, QueryResponse<Boolean> response) {
+        DatabaseHelper db = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
 
         try {
@@ -113,7 +124,7 @@ public class CourseQueryImplementation implements QueryContract.CourseQuery {
     private Course getCourseFromCursor(Cursor cursor) {
         int id = cursor.getInt(cursor.getColumnIndex(DbConfig.SUBJECT_ID));
         String courseName = cursor.getString(cursor.getColumnIndex(DbConfig.SUBJECT_NAME));
-        int courseCode = cursor.getInt(cursor.getColumnIndex(DbConfig.SUBJECT_CODE));
+        String courseCode = cursor.getString(cursor.getColumnIndex(DbConfig.SUBJECT_CODE));
         double courseCredit = cursor.getDouble(cursor.getColumnIndex(DbConfig.SUBJECT_CREDIT));
 
         return new Course(id, courseName, courseCode, courseCredit);

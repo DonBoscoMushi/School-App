@@ -15,7 +15,7 @@
         android:gravity="center"
         android:paddingBottom="10dp"
         android:text="@string/register_course"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/scroll"

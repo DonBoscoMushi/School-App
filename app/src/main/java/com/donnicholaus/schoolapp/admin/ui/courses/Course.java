@@ -3,10 +3,10 @@ package com.donnicholaus.schoolapp.admin.ui.courses;
 public class Course {
     private int id;
     private String name;
-    private int code;
-    private double credit;
+    private String code;
+    private String credit;
 
-    public Course(int id, String name, int code, double credit) {
+    public Course(int id, String name, String code, String credit) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -29,19 +29,19 @@ public class Course {
         this.name = name;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public double getCredit() {
+    public String getCredit() {
         return credit;
     }
 
-    public void setCredit(double credit) {
+    public void setCredit(String credit) {
         this.credit = credit;
     }
 }

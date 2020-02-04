@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_SUBJECT_TABLE = "CREATE TABLE " + DbConfig.TABLE_SUBJECT + "("
             + DbConfig.SUBJECT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + DbConfig.SUBJECT_NAME + " TEXT NOT NULL, "
-            + DbConfig.SUBJECT_CODE + " INTEGER NOT NULL UNIQUE, "
+            + DbConfig.SUBJECT_CODE + " TEXT NOT NULL UNIQUE, "
             + DbConfig.SUBJECT_CREDIT + " REAL" //nullable
             + ")";
 
@@ -62,15 +63,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public static DatabaseHelper getInstance() {
-
-        if (db == null) {
-            synchronized (DatabaseHelper.class){ //thread safe singleton
-                if (db == null)
-                    db = new DatabaseHelper(null);
-            }
+    public static synchronized DatabaseHelper getInstance(Context context){
+        if(db == null){
+            db= new DatabaseHelper(context);
         }
-
         return db;
     }
 
@@ -255,4 +251,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ward_code;
 
     }
+
 }

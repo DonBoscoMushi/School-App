@@ -59,21 +59,21 @@ public class CourseUpdateDialogFragment extends DialogFragment {
         cancelButton = view.findViewById(R.id.cancelButton);
 
         courseNameEditText.setText(course.getName());
-        courseCodeEditText.setText(String.valueOf(course.getCode()));
-        courseCreditEditText.setText(String.valueOf(course.getCredit()));
+        courseCodeEditText.setText(course.getCode());
+        courseCreditEditText.setText(course.getCredit());
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String courseName = courseNameEditText.getText().toString();
-                int courseCode = Integer.parseInt(courseCodeEditText.getText().toString());
-                double courseCredit = Double.parseDouble(courseCreditEditText.getText().toString());
+                String courseCode = courseCodeEditText.getText().toString();
+                String courseCredit = courseCreditEditText.getText().toString();
 
                 course.setName(courseName);
                 course.setCode(courseCode);
                 course.setCredit(courseCredit);
 
-                QueryContract.CourseQuery courseQuery = new CourseQueryImplementation();
+                QueryContract.CourseQuery courseQuery = new CourseQueryImplementation(getContext());
                 courseQuery.updateCourse(course, new QueryResponse<Boolean>() {
                     @Override
                     public void onSuccess(Boolean data) {

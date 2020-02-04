@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
                         listener.onCourseListUpdate(isUpdate);
                     }
                 });
-                //dialogFragment.show(((context) ).getSupportFragmentManager(), UPDATE_SUBJECT);
+                dialogFragment.show(((AppCompatActivity)context).getSupportFragmentManager(), UPDATE_SUBJECT);
             }
         });
 
@@ -78,7 +79,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        QueryContract.CourseQuery query = new CourseQueryImplementation();
+                        QueryContract.CourseQuery query = new CourseQueryImplementation(context);
                         query.deleteCourse(subjectId, new QueryResponse<Boolean>() {
                             @Override
                             public void onSuccess(Boolean data) {

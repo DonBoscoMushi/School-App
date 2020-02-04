@@ -26,13 +26,13 @@
 
     <fragment
         android:id="@+id/nav_view_student"
-        android:name="com.donnicholaus.schoolapp.admin.ui.courses.CoursesFragment"
+        android:name="com.donnicholaus.schoolapp.admin.ui.students.StudentFragment"
         android:label="@string/menu_view_student"
         tools:layout="@layout/fragment_student" />
 
     <fragment
         android:id="@+id/nav_courses"
-        android:name="com.donnicholaus.schoolapp.admin.ui.students.StudentFragment"
+        android:name="com.donnicholaus.schoolapp.admin.ui.courses.CoursesFragment"
         android:label="@string/menu_courses"
         tools:layout="@layout/fragment_courses" />
 </navigation>

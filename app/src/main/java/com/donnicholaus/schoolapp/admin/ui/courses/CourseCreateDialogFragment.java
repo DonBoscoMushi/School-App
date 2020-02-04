@@ -2,6 +2,8 @@ package com.donnicholaus.schoolapp.admin.ui.courses;
 
 import android.app.Dialog;
 import androidx.fragment.app.DialogFragment;
+
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
@@ -25,7 +27,7 @@ public class CourseCreateDialogFragment extends DialogFragment {
     private EditText courseNameEditText,courseCodeEditText,courseCreditEditText;
     private Button createButton;
     private Button cancelButton;
-
+    private Context context;
     private static CourseCrudListener courseCrudListener;
     public static final String TITLE = "title";
 
@@ -62,12 +64,12 @@ public class CourseCreateDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 String courseName = courseNameEditText.getText().toString();
-                int courseCode = Integer.parseInt(courseCodeEditText.getText().toString());
-                double courseCredit = Double.parseDouble(courseCreditEditText.getText().toString());
+                String courseCode = courseCodeEditText.getText().toString();
+                String courseCredit = courseCreditEditText.getText().toString();
 
                 final Course course = new Course(-1, courseName, courseCode, courseCredit);
 
-                QueryContract.CourseQuery query = new CourseQueryImplementation();
+                QueryContract.CourseQuery query = new CourseQueryImplementation(getContext());
                 query.createCourse(course, new QueryResponse<Boolean>() {
                     @Override
                     public void onSuccess(Boolean data) {
