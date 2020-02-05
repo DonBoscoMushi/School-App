@@ -9,6 +9,7 @@
     <string name="birthdate">Birthdate</string>
     <string name="dprog">Degree Program</string>
     <string name="role">Role</string>
+    <string name="regNo">Reg. No.:</string>
     <string name="email">Email</string>
     <string name="ward">Ward</string>
     <string name="phone">Phone</string>
@@ -16,7 +17,19 @@
     <string name="district">District</string>
     <string name="male">Male</string>
     <string name="registration">Registration</string>
-    <string name="student_details">Student Details</string>
+    <string name="admin_header">Admin Home</string>
+    <string name="admin_name">Admin</string>
+    <string name="admin_details">Welcome to School App \n\n You can : \n
+        - \tAdd Admin
+        - \tAdd Students \n
+        - \tAdd Lectures \n
+        - \tAdd Courses \n
+        - \tView Registered Students and Lectures\n\n
+        Navigate through the left menu to perform any operation.</string>
+    <string name="student_details"><u>Student Initial Details</u></string>
+    <string name="student_other_details"><u>Other Details</u></string>
+    <string name="lecturer_details"><u>Lecturer Initial Details</u></string>
+    <string name="lecturer_other_details"><u>Other Details</u></string>
     <string name="female">Female</string>
     <string name="login">Login</string>
     <string name="register">Register</string>

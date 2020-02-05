@@ -124,7 +124,7 @@ public class RegisterFragment extends Fragment {
                         initial = "2019-T-";
                         break;
                     case "Student":
-                        initial = "2019-04";
+                        initial = "2019-04-";
                         break;
                 }
 
@@ -206,7 +206,7 @@ public class RegisterFragment extends Fragment {
                 String birthdate = rgBirthdate.getText().toString();
                 String region = rgRegion.getSelectedItem().toString();
                 String district = rgDistrict.getSelectedItem().toString();
-                String ward = rgWard.getSelectedItem().toString();
+                //String ward = rgWard.getSelectedItem().toString();
                 String role = rgRole.getSelectedItem().toString();
                 String degreeProgram = rgDegreeProg.getText().toString();
 
@@ -220,7 +220,7 @@ public class RegisterFragment extends Fragment {
                 //Check for inputs
 
                 if(firstname.isEmpty() || middlename.isEmpty() || lastname.isEmpty() || birthdate.isEmpty() || region.isEmpty()
-                        || district.isEmpty() || ward.isEmpty() || phone.isEmpty()
+                        || district.isEmpty() /*|| ward.isEmpty()*/ || phone.isEmpty()
                         || role.isEmpty() || degreeProgram.isEmpty()){
 
                     Toast.makeText(Objects.requireNonNull(getActivity()).getApplicationContext(),
@@ -230,7 +230,7 @@ public class RegisterFragment extends Fragment {
 
                     String password = lastname.toUpperCase();
                     boolean insert = db.insert(firstname,middlename, lastname, gender, email, phone,
-                            birthdate, role, regNo, password, degreeProgram, region, district, ward);
+                            birthdate, role, regNo, password, degreeProgram, region, district, "town");
                     if (insert){
 
                         Toast.makeText(getActivity().getApplicationContext(), "Registered Successful", Toast.LENGTH_SHORT).show();

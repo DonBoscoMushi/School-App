@@ -11,12 +11,15 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 
+import com.donnicholaus.schoolapp.UserModal;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper db;
+    public static UserModal userModal;
 
     private static  final int DATABASE_VERSION = 1;
     private  static final String DATABASE_NAME = DbConfig.DATABASE_NAME;
@@ -81,8 +84,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(location.createWardTable);
         db.execSQL(location.insertRegions);
         db.execSQL(location.insertDistricts);
-        db.execSQL(location.insertWardsGroup1);
-        db.execSQL(location.insertWardsGroup2);
+//        db.execSQL(location.insertWardsGroup1);
+//        db.execSQL(location.insertWardsGroup2);
 
         //db.close();
 
@@ -169,16 +172,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String checkUserExist(String regNo, String password){
         SQLiteDatabase db = this.getReadableDatabase();
-        String role;
+        String role, regno, firstname, middlename, lastname, email, birthdate, degreeProgram;
+        double phone;
         //String[] columns = {DbConfig.COLUMN_REGNO, DbConfig.COLUMN_PASSWORD};
         String selection = "RegNo = ? AND password = ?";
         String[] selectionArgs = {regNo, password};
 
         Cursor cursor = db.query(DbConfig.TABLE_USERS,  null, selection, selectionArgs, null, null, null);
 
-
         if(cursor.moveToFirst()){
             role = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_ROLE));
+
+            //Get Other Details
+            regno = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_REGNO));
+            firstname = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_FIRSTNAME));
+            middlename = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_MIDDLENAME));
+            lastname = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_LASTNAME));
+            email = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_EMAIL));
+            phone = cursor.getDouble(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_PHONE));
+            birthdate = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_BIRTHDATE));
+            degreeProgram = cursor.getString(cursor.getColumnIndexOrThrow(DbConfig.COLUMN_DEGREE_PROGRAM));
+
+            Log.d("Data:", "" + regno + firstname + middlename + lastname + email + phone + birthdate + degreeProgram);
+
+//          userModal = new UserModal(regno, firstname, middlename, lastname, email, phone, birthdate, degreeProgram);
+            if (!role.equals("Admin")){
+                userModal.setRegNo(regno);
+                userModal.setFirstname(firstname);
+                userModal.setMiddlename(middlename);
+                userModal.setLastname(lastname);
+                userModal.setEmail(email);
+                userModal.setPhone(phone);
+                userModal.setBirthdate(birthdate);
+                userModal.setDegreeProg(degreeProgram);
+
+            }
+
         }else{
             role = "";
         }

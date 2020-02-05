@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.donnicholaus.schoolapp.admin.Nav;
 import com.donnicholaus.schoolapp.db.DatabaseHelper;
+import com.donnicholaus.schoolapp.lecturer.Lecturer;
 import com.donnicholaus.schoolapp.student.Student;
 
 public class Login extends AppCompatActivity {
@@ -18,22 +19,12 @@ public class Login extends AppCompatActivity {
     EditText lg_username, lg_password;
     Button btn_login;
 
-
-    //private  DatabaseHelper db;
     DatabaseHelper db = new DatabaseHelper(Login.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
-//        boolean admin = db.checkAdminExist();
-//
-//
-//        if(!admin){
-//            addDefaultUser();
-//        }
 
         lg_username = findViewById(R.id.etUsername);
         lg_password = findViewById(R.id.etPassword);
@@ -48,47 +39,47 @@ public class Login extends AppCompatActivity {
                 String password = lg_password.getText().toString();
 
                 String login = db.checkUserExist(username, password);
-                Toast.makeText(getApplicationContext(), login, Toast.LENGTH_SHORT).show();
-
 
                 switch (login) {
                     case "Admin": {
+                        Toast.makeText(getApplicationContext(), login, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Nav.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
                         break;
                     }
-                    case "Teacher":
-                        Toast.makeText(getApplicationContext(), "Bado activity ya walim", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "Student": {
-                        Intent intent = new Intent(getApplicationContext(), Student.class);
+                    case "Teacher": {
+                        Toast.makeText(getApplicationContext(), login, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), Lecturer.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        finish();
+                        break;
+                    }
+                    case "Student": {
+                        Toast.makeText(getApplicationContext(), login, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), Student.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
                         break;
                     }
                     default: {
                         Toast.makeText(getApplicationContext(), "No user found", Toast.LENGTH_SHORT).show();
                     }
                 }
-//                }catch (Exception e){
-//                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-//
-//                }
 
             }
         });
 
     }
 
-//    public void addDefaultUser(){
-//
-//        boolean insert = db.insert("Admin", null, null, null, null,
-//                null,null, "Admin", "Admin", "admin", null,
-//                null, null, null);
-//        if(insert){
-//            Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
-//        }else
-//            Toast.makeText(getApplicationContext(), "No Admin", Toast.LENGTH_SHORT).show();
-//    }
-
+    /**
+     * Intent i = new Intent(oldActivity, newActivity)
+     * i.setFlasgs(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+     * startActivity(i);
+     *
+     * */
 
 }

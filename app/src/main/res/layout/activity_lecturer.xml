@@ -17,7 +17,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="@string/student_details"
+        android:text="@string/lecturer_details"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -48,7 +48,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_regNo"
+                android:id="@+id/l_regNo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -76,7 +76,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_firstname"
+                android:id="@+id/l_firstname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -104,7 +104,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_middlename"
+                android:id="@+id/l_middlename"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -131,7 +131,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_lastname"
+                android:id="@+id/l_lastname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -153,7 +153,7 @@
         android:layout_marginEnd="2dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="@string/student_other_details"
+        android:text="@string/lecturer_other_details"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
@@ -184,7 +184,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_email"
+                android:id="@+id/l_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -212,7 +212,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_phone"
+                android:id="@+id/l_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -240,7 +240,7 @@
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
             <TextView
-                android:id="@+id/s_birthdate"
+                android:id="@+id/l_birthdate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -249,34 +249,6 @@
                 android:textSize="24sp"/>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/dprog"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                android:layout_weight="0.5"
-                android:fontFamily="sans-serif-condensed"/>
-            <TextView
-                android:id="@+id/s_degree_prog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:textSize="24sp"/>
-
-        </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>
