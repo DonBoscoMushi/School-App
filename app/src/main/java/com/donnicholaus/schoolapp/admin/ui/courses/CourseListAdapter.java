@@ -1,4 +1,5 @@
 package com.donnicholaus.schoolapp.admin.ui.courses;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import androidx.annotation.NonNull;
@@ -37,13 +38,14 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         return new CourseViewHolder(view);
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         final Course subject = subjectList.get(position);
 
         holder.subjectNameTextView.setText(subject.getName());
-        holder.courseCodeTextView.setText(context.getString(R.string.course_code, subject.getCode()));
-        holder.creditTextView.setText(context.getString(R.string.course_credit, subject.getCredit()));
+        holder.courseCodeTextView.setText(context.getResources().getString(R.string.course_code, subject.getCode()));
+        holder.creditTextView.setText(context.getResources().getString(R.string.course_credit, subject.getCredit()));
 
         holder.editIcon.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -125,7 +125,7 @@ public class CourseQueryImplementation implements QueryContract.CourseQuery {
         int id = cursor.getInt(cursor.getColumnIndex(DbConfig.SUBJECT_ID));
         String courseName = cursor.getString(cursor.getColumnIndex(DbConfig.SUBJECT_NAME));
         String courseCode = cursor.getString(cursor.getColumnIndex(DbConfig.SUBJECT_CODE));
-        double courseCredit = cursor.getDouble(cursor.getColumnIndex(DbConfig.SUBJECT_CREDIT));
+        String courseCredit = cursor.getString(cursor.getColumnIndex(DbConfig.SUBJECT_CREDIT));
 
         return new Course(id, courseName, courseCode, courseCredit);
     }

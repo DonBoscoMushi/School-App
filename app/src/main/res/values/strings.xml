@@ -16,6 +16,7 @@
     <string name="district">District</string>
     <string name="male">Male</string>
     <string name="registration">Registration</string>
+    <string name="student_details">Student Details</string>
     <string name="female">Female</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -51,8 +52,8 @@
     <string name="course_name"> </string>
     <string name="cancel_button">Cancel</string>
     <string name="create_button">Create</string>
-    <string name="course_code">Course Code: %$s</string>
-    <string name="course_credit">Course Credit: %$s</string>
+    <string name="course_code">Course Code: %1$s</string>
+    <string name="course_credit">Course Credit: %1$s</string>
 
     <string name="register_course">Registered Courses</string>
 
