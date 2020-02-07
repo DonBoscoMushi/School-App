@@ -2,89 +2,97 @@ package com.donnicholaus.schoolapp;
 
 public class UserModal {
 
-    private String regNo;
-    private String firstname;
-    private String middlename;
-    private String lastname;
-    private String email;
-    private double phone;
-    private String birthdate;
-    private String degreeProg;
+//    public static String studentData(String regNo, String firstname, String middlename, String lastname,
+////                        String email, double phone, String birthdate, String degreeProg){
+//
+//
+//    }
 
-    public UserModal(String regNo, String firstname, String middlename, String lastname,
-                        String email, double phone, String birthdate, String degreeProg){
-        this.regNo = regNo;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.birthdate = birthdate;
-        this.degreeProg = degreeProg;
-    }
+    private static   String regNo;
+    private static String firstname;
+    private static String middlename;
+    private static String lastname;
+    private static String email;
+    private static String phone;
+    private static String birthdate;
+    private static String degreeProg;
 
-    public String getRegNo() {
+//    public  UserModal(String regNo, String firstname, String middlename, String lastname,
+//                        String email, Double phone, String birthdate, String degreeProg){
+//        this.regNo = regNo;
+//        this.firstname = firstname;
+//        this.middlename = middlename;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.phone = phone;
+//        this.birthdate = birthdate;
+//        this.degreeProg = degreeProg;
+//    }
+
+
+
+    public static String getRegNo() {
         return regNo;
     }
 
-    public void setRegNo(String regNo) {
-        this.regNo = regNo;
+    public static void setRegNo(String _regNo) {
+        regNo = _regNo;
     }
 
-    public String getFirstname() {
+    public static String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public static void setFirstname(String Firstname) {
+         firstname = Firstname;
     }
 
-    public String getMiddlename() {
+    public static String getMiddlename() {
         return middlename;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public static void setMiddlename(String Middlename) {
+         middlename = Middlename;
     }
 
-    public String getLastname() {
+    public static String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public static void setLastname(String Lastname) {
+         lastname = Lastname;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String Email) {
+         email = Email;
     }
 
-    public double getPhone() {
-        return phone;
+    public static String getPhone() {
+        return  phone;
     }
 
-    public void setPhone(double phone) {
-        this.phone = phone;
+    public static void setPhone(String  Phone) {
+         phone = Phone;
     }
 
-    public String getBirthdate() {
+    public static String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public static void setBirthdate(String Birthdate) {
+         birthdate = Birthdate;
     }
 
-    public String getDegreeProg() {
+    public static String getDegreeProg() {
         return degreeProg;
     }
 
-    public void setDegreeProg(String degreeProg) {
-        this.degreeProg = degreeProg;
+    public static void setDegreeProg(String DegreeProg) {
+         degreeProg = DegreeProg;
     }
 
 

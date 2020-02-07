@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/regNo"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -54,7 +54,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/firstname"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -82,7 +82,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -99,7 +99,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/middlename"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -110,7 +110,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -126,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/lastname"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -137,7 +137,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -179,7 +179,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -190,7 +190,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -207,7 +207,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -218,7 +218,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -235,7 +235,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/birthdate"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -246,7 +246,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -262,7 +262,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/dprog"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_weight="0.5"
                 android:fontFamily="sans-serif-condensed"/>
@@ -273,7 +273,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="20sp"/>
 
         </LinearLayout>
 

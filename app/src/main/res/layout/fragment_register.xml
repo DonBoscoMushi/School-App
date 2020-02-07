@@ -255,20 +255,18 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="2dp"
                         android:layout_marginEnd="10dp"
+                        android:layout_weight="0.5"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="sans-serif-condensed"
-                        android:paddingStart="2dp"
-                        android:paddingTop="7dp"
-                        android:paddingEnd="2dp"
-                        android:paddingBottom="2dp"
                         android:text="@string/role"
-                        android:textSize="17sp" />
+                        android:textSize="20sp" />
 
                     <Spinner
                         android:id="@+id/role"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:entries="@array/role"
                         android:prompt="@string/role"
                         android:spinnerMode="dropdown" />
@@ -285,21 +283,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10sp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="0.5"
                         android:fontFamily="sans-serif-condensed"
-                        android:paddingBottom="5dp"
                         android:text="@string/username"
-                        android:textSize="17sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:background="@color/white"
-                        android:textSize="12sp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"
                         android:paddingTop="2dp"
                         android:paddingBottom="2dp"
